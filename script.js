@@ -248,7 +248,7 @@ function shareToTwitter() {
 
 来财 来！ 来财 来！ 来财 来！
 
-#来财 $LAICAI888`;
+#来财 $LAICAI`;
     
     // 构建Twitter分享URL
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
