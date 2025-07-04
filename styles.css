@@ -102,6 +102,35 @@ body {
     background: rgba(255, 215, 0, 0.1);
 }
 
+/* Twitter链接特殊样式 */
+.twitter-link {
+    background: linear-gradient(45deg, #1DA1F2, #0d8bd9);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.twitter-link:hover {
+    background: linear-gradient(45deg, #0d8bd9, #1DA1F2);
+    border-color: rgba(29, 161, 242, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(29, 161, 242, 0.3);
+}
+
+.twitter-icon {
+    font-size: 1.1rem;
+    margin-right: 0.3rem;
+    animation: twitterFloat 3s ease-in-out infinite;
+}
+
+@keyframes twitterFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+.twitter-text {
+    font-weight: 600;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -282,6 +311,121 @@ body {
 @keyframes titleGlow {
     0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5)); }
     50% { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)); }
+}
+
+/* Hero信息区域 */
+.hero-info {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* CA地址样式 */
+.ca-address {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.ca-address:hover {
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.ca-label {
+    font-weight: 700;
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.ca-text {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    user-select: all;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: #ffd700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Buy按钮样式 */
+.buy-container {
+    margin: 1rem 0;
+}
+
+.buy-button {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #ff6b35, #ffd700);
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.buy-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 107, 53, 0.5);
+}
+
+.buy-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.buy-button:hover::before {
+    left: 100%;
+}
+
+.buy-icon {
+    font-size: 1.3rem;
+    animation: moneyShake 2s ease-in-out infinite;
+}
+
+@keyframes moneyShake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+.buy-text {
+    font-weight: 700;
 }
 
 /* CTA 按钮 */
@@ -828,5 +972,58 @@ body {
     
     .celebration-text h2 {
         font-size: 2rem;
+    }
+}
+
+/* Toast提示样式 */
+.toast {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: linear-gradient(45deg, #ff6b35, #ffd700);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .hero-info {
+        margin: 1.5rem 0;
+        gap: 1rem;
+    }
+    
+    .ca-address {
+        padding: 0.8rem 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .ca-text {
+        font-size: 0.9rem;
+    }
+    
+    .buy-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .toast {
+        right: 10px;
+        left: 10px;
+        transform: translateY(-100%);
+    }
+    
+    .toast.show {
+        transform: translateY(0);
     }
 } 

@@ -93,6 +93,9 @@ function bindEventListeners() {
     
     // 导航栏切换
     document.getElementById('navToggle').addEventListener('click', toggleMobileMenu);
+    
+    // Buy按钮
+    document.getElementById('buyButton').addEventListener('click', buyToken);
 }
 
 // 开始挂玉流程
@@ -318,7 +321,7 @@ function startDanmaku() {
 
 // 初始化导航栏
 function initNavigation() {
-    // 平滑滚动到锚点
+    // 平滑滚动到锚点（只处理内部链接）
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -332,14 +335,14 @@ function initNavigation() {
         });
     });
     
-    // 滚动时高亮当前导航项
+    // 滚动时高亮当前导航项（排除外部链接）
     window.addEventListener('scroll', highlightCurrentNav);
 }
 
 // 高亮当前导航项
 function highlightCurrentNav() {
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link:not(.twitter-link)'); // 排除Twitter链接
     
     let current = '';
     sections.forEach(section => {
@@ -365,6 +368,61 @@ function toggleMobileMenu() {
     
     navMenu.classList.toggle('active');
     navToggle.classList.toggle('active');
+}
+
+// 复制CA地址
+function copyCA() {
+    const caText = '000000000000000000000000000';
+    
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(caText).then(() => {
+            showToast('CA地址已复制到剪贴板！');
+        }).catch(() => {
+            fallbackCopy(caText);
+        });
+    } else {
+        fallbackCopy(caText);
+    }
+}
+
+// 降级复制方案
+function fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    showToast('CA地址已复制到剪贴板！');
+}
+
+// 购买代币
+function buyToken() {
+    showToast('购买功能即将上线，敬请期待！');
+}
+
+// 显示提示信息
+function showToast(message) {
+    // 创建提示元素
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    
+    // 添加到页面
+    document.body.appendChild(toast);
+    
+    // 显示动画
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+    
+    // 自动隐藏
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
+    }, 3000);
 }
 
 // 播放音效
