@@ -13,6 +13,29 @@
         <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
     </audio>
     
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🧧</span>
+                <span class="logo-text">八方来财挂玉台</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#hero" class="nav-link">首页</a>
+                <a href="#incenseSection" class="nav-link">香炉供台</a>
+                <a href="#worshipSection" class="nav-link">虔诚拜拜</a>
+                <a href="#generateSection" class="nav-link">玉牌生成</a>
+                <a href="#finalSection" class="nav-link">来财仪式</a>
+                <a href="#messageSection" class="nav-link">留言墙</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
     <!-- 1️⃣ Hero 区域 -->
     <section id="hero" class="hero-section">
         <div class="floating-jades">
@@ -44,7 +67,7 @@
     </section>
 
     <!-- 2️⃣ 香炉供台区域 -->
-    <section id="incenseSection" class="incense-section hidden">
+    <section id="incenseSection" class="incense-section">
         <div class="incense-altar">
             <div class="incense-burner">
                 <div class="burner-body">🕯️</div>
@@ -72,7 +95,7 @@
     </section>
 
     <!-- 3️⃣ 拜拜点击区域 -->
-    <section id="worshipSection" class="worship-section hidden">
+    <section id="worshipSection" class="worship-section">
         <div class="worship-area">
             <div class="worship-text">
                 <p class="worship-lyric">🙏 虔诚拜三拜</p>
@@ -93,7 +116,7 @@
     </section>
 
     <!-- 4️⃣ 玉牌生成区域 -->
-    <section id="generateSection" class="generate-section hidden">
+    <section id="generateSection" class="generate-section">
         <div class="generate-content">
             <div class="pre-generate-lyrics">
                 <p>🎲 易的是六合彩</p>
@@ -113,7 +136,7 @@
     </section>
 
     <!-- 5️⃣ 最终仪式区域 -->
-    <section id="finalSection" class="final-section hidden">
+    <section id="finalSection" class="final-section">
         <div class="final-content">
             <div class="celebration-text">
                 <h2>🧧 来财 来 来财 来 来财 来！</h2>
@@ -128,11 +151,8 @@
             </div>
             
             <div class="action-buttons">
-                <button id="saveImage" class="action-btn save-btn">
-                    📸 保存今日挂玉图
-                </button>
-                <button id="shareWechat" class="action-btn share-btn">
-                    📱 转发朋友圈 · 广邀财神
+                <button id="shareTwitter" class="action-btn share-btn">
+                    🐦 发布推文 · 广邀财神
                 </button>
             </div>
         </div>

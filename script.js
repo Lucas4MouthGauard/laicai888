@@ -1,5 +1,4 @@
 // 全局变量
-let currentSection = 0;
 let worshipCount = 0;
 let selectedJade = '';
 let isGenerating = false;
@@ -60,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 开始弹幕
     startDanmaku();
+    
+    // 初始化导航栏
+    initNavigation();
 });
 
 // 绑定事件监听器
@@ -75,11 +77,8 @@ function bindEventListeners() {
     // 拜拜按钮
     document.getElementById('worshipButton').addEventListener('click', performWorship);
     
-    // 保存图片按钮
-    document.getElementById('saveImage').addEventListener('click', saveImage);
-    
-    // 分享按钮
-    document.getElementById('shareWechat').addEventListener('click', shareToWechat);
+    // 分享推文按钮
+    document.getElementById('shareTwitter').addEventListener('click', shareToTwitter);
     
     // 留言提交
     document.getElementById('submitMessage').addEventListener('click', submitMessage);
@@ -91,6 +90,9 @@ function bindEventListeners() {
             submitMessage();
         }
     });
+    
+    // 导航栏切换
+    document.getElementById('navToggle').addEventListener('click', toggleMobileMenu);
 }
 
 // 开始挂玉流程
@@ -98,9 +100,11 @@ function startHangingProcess() {
     // 播放音效
     playSound('click');
     
-    // 隐藏Hero区域，显示香炉区域
-    hideSection('hero');
-    showSection('incenseSection');
+    // 滚动到香炉区域
+    document.getElementById('incenseSection').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+    });
     
     // 添加香炉动画
     animateIncenseAltar();
@@ -119,9 +123,11 @@ function selectJade(e) {
     card.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.8)';
     
     setTimeout(() => {
-        // 隐藏香炉区域，显示拜拜区域
-        hideSection('incenseSection');
-        showSection('worshipSection');
+        // 滚动到拜拜区域
+        document.getElementById('worshipSection').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
         
         // 重置玉牌样式
         card.style.transform = '';
@@ -149,9 +155,11 @@ function performWorship() {
     // 检查是否完成三拜
     if (worshipCount >= 3) {
         setTimeout(() => {
-            // 隐藏拜拜区域，显示生成区域
-            hideSection('worshipSection');
-            showSection('generateSection');
+            // 滚动到生成区域
+            document.getElementById('generateSection').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
             
             // 开始生成玉牌
             generateJade();
@@ -188,10 +196,12 @@ function generateJade() {
         // 播放音效
         playSound('success');
         
-        // 2秒后显示最终仪式
+        // 2秒后滚动到最终仪式
         setTimeout(() => {
-            hideSection('generateSection');
-            showSection('finalSection');
+            document.getElementById('finalSection').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
             
             // 开始庆祝动画
             startCelebration();
@@ -219,36 +229,20 @@ function startCelebration() {
     addDanmaku("💎 玉牌显灵！");
 }
 
-// 保存图片
-function saveImage() {
-    // 创建截图
-    html2canvas(document.body).then(canvas => {
-        const link = document.createElement('a');
-        link.download = '八方来财挂玉图.png';
-        link.href = canvas.toDataURL();
-        link.click();
-    });
-}
+// 分享到推文
+function shareToTwitter() {
+    // 构建推文内容
+    const tweetText = `八方来财 广邀财神！！
 
-// 分享到微信
-function shareToWechat() {
-    // 复制分享文本到剪贴板
-    const shareText = `🧧 我在「八方来财挂玉台」挂到了${selectedJade}，你也来试试吧！`;
+来财 来！ 来财 来！ 来财 来！
+
+#来财 $laicai888`;
     
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(shareText).then(() => {
-            alert('分享文本已复制到剪贴板，快去朋友圈分享吧！');
-        });
-    } else {
-        // 降级方案
-        const textArea = document.createElement('textarea');
-        textArea.value = shareText;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('分享文本已复制到剪贴板，快去朋友圈分享吧！');
-    }
+    // 构建Twitter分享URL
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+    
+    // 打开Twitter发布页面
+    window.open(twitterUrl, '_blank', 'width=600,height=400');
 }
 
 // 提交留言
@@ -322,17 +316,55 @@ function startDanmaku() {
     }, 3000);
 }
 
-// 显示区域
-function showSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    section.classList.remove('hidden');
-    section.scrollIntoView({ behavior: 'smooth' });
+// 初始化导航栏
+function initNavigation() {
+    // 平滑滚动到锚点
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // 滚动时高亮当前导航项
+    window.addEventListener('scroll', highlightCurrentNav);
 }
 
-// 隐藏区域
-function hideSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    section.classList.add('hidden');
+// 高亮当前导航项
+function highlightCurrentNav() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// 切换移动端菜单
+function toggleMobileMenu() {
+    const navMenu = document.querySelector('.nav-menu');
+    const navToggle = document.getElementById('navToggle');
+    
+    navMenu.classList.toggle('active');
+    navToggle.classList.toggle('active');
 }
 
 // 播放音效
