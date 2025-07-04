@@ -63,6 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化导航栏
     initNavigation();
     
+    // 初始化音乐控制
+    initMusicControl();
+    
     // 页面加载完成后自动播放背景音乐
     setTimeout(() => {
         const bgMusic = document.getElementById('bgMusic');
@@ -102,6 +105,9 @@ function bindEventListeners() {
     
     // Buy按钮
     document.getElementById('buyButton').addEventListener('click', buyToken);
+    
+    // 音乐控制按钮
+    document.getElementById('musicToggle').addEventListener('click', toggleMusic);
 }
 
 // 开始挂玉流程
@@ -242,7 +248,7 @@ function shareToTwitter() {
 
 来财 来！ 来财 来！ 来财 来！
 
-#来财 $laicai888`;
+#来财 $LAICAI888`;
     
     // 构建Twitter分享URL
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
@@ -405,6 +411,55 @@ function buyToken() {
     return;
 }
 
+// 音乐控制功能
+function toggleMusic() {
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicToggle');
+    const musicIcon = musicBtn.querySelector('.music-icon');
+    
+    if (bgMusic.paused) {
+        // 播放音乐
+        bgMusic.play().then(() => {
+            musicBtn.classList.remove('muted');
+            musicIcon.textContent = '🔊';
+            showToast('音乐已开启');
+        }).catch(e => {
+            console.log('音乐播放失败:', e);
+            showToast('音乐播放失败');
+        });
+    } else {
+        // 暂停音乐
+        bgMusic.pause();
+        musicBtn.classList.add('muted');
+        musicIcon.textContent = '🔇';
+        showToast('音乐已关闭');
+    }
+}
+
+// 初始化音乐控制
+function initMusicControl() {
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicToggle');
+    const musicIcon = musicBtn.querySelector('.music-icon');
+    
+    // 监听音乐播放状态变化
+    bgMusic.addEventListener('play', () => {
+        musicBtn.classList.remove('muted');
+        musicIcon.textContent = '🔊';
+    });
+    
+    bgMusic.addEventListener('pause', () => {
+        musicBtn.classList.add('muted');
+        musicIcon.textContent = '🔇';
+    });
+    
+    bgMusic.addEventListener('ended', () => {
+        // 音乐播放结束后自动重新播放
+        bgMusic.currentTime = 0;
+        bgMusic.play().catch(e => console.log('音乐循环播放失败:', e));
+    });
+}
+
 // 显示提示信息
 function showToast(message) {
     // 创建提示元素
@@ -474,14 +529,17 @@ function throttle(func, limit) {
 
 // 页面可见性变化处理
 document.addEventListener('visibilitychange', function() {
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicToggle');
+    
     if (document.hidden) {
         // 页面隐藏时暂停音乐
-        const bgMusic = document.getElementById('bgMusic');
         bgMusic.pause();
     } else {
-        // 页面显示时恢复音乐
-        const bgMusic = document.getElementById('bgMusic');
-        bgMusic.play().catch(e => console.log('音乐播放失败:', e));
+        // 页面显示时恢复音乐（如果之前是播放状态）
+        if (!musicBtn.classList.contains('muted')) {
+            bgMusic.play().catch(e => console.log('音乐播放失败:', e));
+        }
     }
 });
 

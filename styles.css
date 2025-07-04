@@ -183,6 +183,72 @@ body {
     }
 }
 
+/* 音乐控制按钮 */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.music-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff6b35, #ffd700);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.5);
+}
+
+.music-btn.muted {
+    background: linear-gradient(45deg, #666, #999);
+    box-shadow: 0 5px 15px rgba(102, 102, 102, 0.3);
+}
+
+.music-btn.muted:hover {
+    box-shadow: 0 8px 20px rgba(102, 102, 102, 0.5);
+}
+
+.music-icon {
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+.music-btn.muted .music-icon {
+    animation: none;
+    opacity: 0.7;
+}
+
+@keyframes musicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* 移动端音乐控制按钮 */
+@media (max-width: 768px) {
+    .music-control {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .music-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
 /* 加载动画 */
 .loading-overlay {
     position: fixed;
