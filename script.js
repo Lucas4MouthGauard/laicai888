@@ -140,31 +140,28 @@ function selectJade(e) {
 
 // 执行拜拜
 function performWorship() {
+    if (worshipCount >= 3) return; // 超过3次不再递增
     worshipCount++;
-    
     // 播放音效
     playSound('worship');
-    
-    // 更新计数器
-    document.getElementById('worshipCount').textContent = worshipCount;
-    
+    // 更新计数器，最多显示3/3
+    document.getElementById('worshipCount').textContent = Math.min(worshipCount, 3);
     // 添加拜拜动画
     const button = document.getElementById('worshipButton');
     button.style.transform = 'scale(0.9)';
     setTimeout(() => {
         button.style.transform = 'scale(1)';
     }, 200);
-    
     // 检查是否完成三拜
     if (worshipCount >= 3) {
+        // 禁用按钮
+        button.disabled = true;
+        button.classList.add('disabled');
         setTimeout(() => {
-            // 滚动到生成区域
             document.getElementById('generateSection').scrollIntoView({ 
                 behavior: 'smooth',
                 block: 'start'
             });
-            
-            // 开始生成玉牌
             generateJade();
         }, 1000);
     }

@@ -50,4 +50,11 @@ coverage/
 # 其他
 *.bak
 *.tmp
-*.temp 
+*.temp
+
+# 音频文件（允许提交）
+!audio/
+!audio/*.mp3
+!audio/*.wav
+!audio/*.ogg
+!audio/*.m4a 

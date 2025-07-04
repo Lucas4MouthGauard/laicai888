@@ -635,6 +635,15 @@ body {
     box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
 }
 
+.worship-button.disabled,
+.worship-button:disabled {
+    background: #ccc !important;
+    color: #888 !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
 .worship-icon {
     font-size: 3rem;
     animation: worshipBounce 1s ease-in-out infinite;
