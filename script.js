@@ -381,7 +381,7 @@ function toggleMobileMenu() {
 
 // 复制CA地址
 function copyCA() {
-    const caText = 'FRNGPMnGZbPCVM6ZwubYc4RzCJbxK5B3wfbrQYRibonk';
+    const caText = '00000000000000';
     
     if (navigator.clipboard) {
         navigator.clipboard.writeText(caText).then(() => {
