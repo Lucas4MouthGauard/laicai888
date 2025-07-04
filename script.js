@@ -381,7 +381,7 @@ function toggleMobileMenu() {
 
 // 复制CA地址
 function copyCA() {
-    const caText = 'YnLFLaSidyvPJox1bZubxGQLPxTxqWac1J7urYrbonk';
+    const caText = '000000000000000000000000000';
     
     if (navigator.clipboard) {
         navigator.clipboard.writeText(caText).then(() => {
@@ -407,8 +407,8 @@ function fallbackCopy(text) {
 
 // 购买代币
 function buyToken() {
-    // 跳转到购买页面
-    window.open('https://letsbonk.fun/token/YnLFLaSidyvPJox1bZubxGQLPxTxqWac1J7urYrbonk', '_blank');
+    // 暂时无功能，不显示任何提示
+    return;
 }
 
 // 音乐控制功能
