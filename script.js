@@ -62,6 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化导航栏
     initNavigation();
+    
+    // 页面加载完成后自动播放背景音乐
+    setTimeout(() => {
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.play().catch(e => console.log('音乐播放失败:', e));
+    }, 2500); // 等待加载动画结束后播放
 });
 
 // 绑定事件监听器
@@ -395,7 +401,8 @@ function fallbackCopy(text) {
 
 // 购买代币
 function buyToken() {
-    showToast('购买功能即将上线，敬请期待！');
+    // 暂时无功能，不显示任何提示
+    return;
 }
 
 // 显示提示信息
@@ -472,11 +479,9 @@ document.addEventListener('visibilitychange', function() {
         const bgMusic = document.getElementById('bgMusic');
         bgMusic.pause();
     } else {
-        // 页面显示时恢复音乐（如果用户允许）
-        if (currentSection === 4) { // 最终仪式区域
-            const bgMusic = document.getElementById('bgMusic');
-            bgMusic.play().catch(e => console.log('音乐播放失败:', e));
-        }
+        // 页面显示时恢复音乐
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.play().catch(e => console.log('音乐播放失败:', e));
     }
 });
 
