@@ -248,7 +248,7 @@ function shareToTwitter() {
 
 来财 来！ 来财 来！ 来财 来！
 
-#来财 $LAICAI`;
+#来财 $BaFangLaiCai`;
     
     // 构建Twitter分享URL
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
@@ -407,8 +407,8 @@ function fallbackCopy(text) {
 
 // 购买代币
 function buyToken() {
-    // 跳转到购买页面
-    window.open('https://letsbonk.fun/token/FRNGPMnGZbPCVM6ZwubYc4RzCJbxK5B3wfbrQYRibonk', '_blank');
+    // 暂时无功能，不显示任何提示
+    return;
 }
 
 // 音乐控制功能
