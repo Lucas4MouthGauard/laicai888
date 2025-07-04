@@ -1,0 +1,36 @@
+{
+  "name": "bafanglaicai-jade-platform",
+  "version": "1.0.0",
+  "description": "🧧 八方来财挂玉台 - 你信，玉就灵！一个有趣的meme网页项目",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "meme",
+    "jade",
+    "fortune",
+    "interactive",
+    "web",
+    "animation",
+    "chinese",
+    "culture"
+  ],
+  "author": "Meme Web Design Master",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/bafanglaicai-jade-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/bafanglaicai-jade-platform/issues"
+  },
+  "homepage": "https://github.com/yourusername/bafanglaicai-jade-platform#readme",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

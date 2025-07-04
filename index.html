@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧧 八方来财挂玉台 - 你信，玉就灵</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+    
+    <!-- 1️⃣ Hero 区域 -->
+    <section id="hero" class="hero-section">
+        <div class="floating-jades">
+            <div class="jade jade-1">🧧</div>
+            <div class="jade jade-2">💎</div>
+            <div class="jade jade-3">🏮</div>
+            <div class="jade jade-4">💰</div>
+        </div>
+        
+        <div class="incense-smoke">
+            <div class="smoke smoke-1"></div>
+            <div class="smoke smoke-2"></div>
+            <div class="smoke smoke-3"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="main-title">
+                <span class="title-line-1">🧧「八方来财」挂玉台</span>
+                <span class="title-line-2">"你信，玉就灵"</span>
+            </h1>
+            
+            <div class="cta-container">
+                <button id="startHanging" class="cta-button">
+                    <span class="button-text">点击挂玉 · 开启来财之路</span>
+                    <span class="button-glow"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2️⃣ 香炉供台区域 -->
+    <section id="incenseSection" class="incense-section hidden">
+        <div class="incense-altar">
+            <div class="incense-burner">
+                <div class="burner-body">🕯️</div>
+                <div class="incense-stick">|</div>
+            </div>
+            
+            <div class="jade-table">
+                <div class="table-surface"></div>
+                <div class="jade-cards">
+                    <div class="jade-card card-1" data-jade="财神暴富玉">💎</div>
+                    <div class="jade-card card-2" data-jade="摸金校尉玉">🏮</div>
+                    <div class="jade-card card-3" data-jade="打工护体玉">🧧</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lyrics-display">
+            <p class="lyric-line">🔮 香炉供台上摆</p>
+            <p class="lyric-line">💳 长大才开白黄牌</p>
+        </div>
+        
+        <div class="instruction">
+            <p>✨ 玉牌缓缓从香炉飘出，点击任意玉牌开始挂玉</p>
+        </div>
+    </section>
+
+    <!-- 3️⃣ 拜拜点击区域 -->
+    <section id="worshipSection" class="worship-section hidden">
+        <div class="worship-area">
+            <div class="worship-text">
+                <p class="worship-lyric">🙏 虔诚拜三拜</p>
+                <p class="worship-lyric">💸 钱包里多几百</p>
+            </div>
+            
+            <div class="worship-counter">
+                <span id="worshipCount">0</span> / 3
+            </div>
+            
+            <div class="worship-button-container">
+                <button id="worshipButton" class="worship-button">
+                    <span class="worship-icon">🙏</span>
+                    <span class="worship-text-btn">点击拜拜</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4️⃣ 玉牌生成区域 -->
+    <section id="generateSection" class="generate-section hidden">
+        <div class="generate-content">
+            <div class="pre-generate-lyrics">
+                <p>🎲 易的是六合彩</p>
+                <p>🀄 难的是等河牌</p>
+            </div>
+            
+            <div class="jade-result hidden" id="jadeResult">
+                <div class="jade-name" id="jadeName"></div>
+                <div class="fortune-text" id="fortuneText"></div>
+            </div>
+            
+            <div class="generating-animation">
+                <div class="spinning-jade">💎</div>
+                <p>正在为您生成专属玉牌...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5️⃣ 最终仪式区域 -->
+    <section id="finalSection" class="final-section hidden">
+        <div class="final-content">
+            <div class="celebration-text">
+                <h2>🧧 来财 来 来财 来 来财 来！</h2>
+            </div>
+            
+            <div class="coin-explosion">
+                <div class="coin coin-1">💰</div>
+                <div class="coin coin-2">💎</div>
+                <div class="coin coin-3">🏮</div>
+                <div class="coin coin-4">🧧</div>
+                <div class="coin coin-5">💵</div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="saveImage" class="action-btn save-btn">
+                    📸 保存今日挂玉图
+                </button>
+                <button id="shareWechat" class="action-btn share-btn">
+                    📱 转发朋友圈 · 广邀财神
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6️⃣ 留言墙区域 -->
+    <section id="messageSection" class="message-section">
+        <div class="message-wall">
+            <h3>💬 今日挂玉体验墙</h3>
+            
+            <div class="message-input">
+                <textarea id="messageInput" placeholder="分享你的挂玉体验..."></textarea>
+                <button id="submitMessage" class="submit-btn">发送</button>
+            </div>
+            
+            <div class="messages-container" id="messagesContainer">
+                <div class="message">
+                    <span class="user">财神附体</span>
+                    <span class="content">刚挂完玉，老板说我年终奖翻倍！</span>
+                </div>
+                <div class="message">
+                    <span class="user">玉牌护佑</span>
+                    <span class="content">虔诚拜了三拜，刚收客户尾款哈哈哈</span>
+                </div>
+                <div class="message">
+                    <span class="user">八方来财</span>
+                    <span class="content">挂玉第二天，股票涨停了！</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="danmaku-wall" id="danmakuWall">
+            <!-- 弹幕将在这里动态生成 -->
+        </div>
+    </section>
+
+    <!-- 加载动画 -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-jade">💎</div>
+            <p>正在准备挂玉台...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
